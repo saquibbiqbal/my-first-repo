@@ -1,0 +1,31 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    SONAR_TOKEN: "sonar/qa-pipes:SONAR_TOKEN"
+  variables:
+    SONAR_HOST_URL: "https://sonar.totalcollectr.io"
+    SONAR_PROJECT_KEY: "qa-pipes-test"
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+    commands:
+      - curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006.zip
+      - unzip -q sonar-scanner.zip
+      - mv sonar-scanner-5.0.1.3006 sonar-scanner
+      - export PATH=$PATH:$PWD/sonar-scanner/bin
+
+  pre_build:
+    commands:
+      - echo "Preparing to run SonarQube analysis"
+
+  build:
+    commands:
+      - echo "Running SonarQube scan with debug..."
+      - sonar-scanner -X -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.sources=. -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN 
+
+  post_build:
+    commands:
+      - echo "SonarQube analysis completed"
