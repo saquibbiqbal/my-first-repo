@@ -6,6 +6,7 @@ env:
   variables:
     SONAR_HOST_URL: "https://sonar.totalcollectr.io"
     SONAR_PROJECT_KEY: "qa-pipes-test"
+    test: tesTTTTT
 
 phases:
   install:
