@@ -203,6 +203,7 @@ define("COMMUNICATIONS_LOG_MODE", 0); //0=Irrespective of return status 1=Based 
 define("ERROR_REPORT_SUPPORT_COMMUNICATION", false);
 
 //firebase credential
+define test
 define("FIREBASE_DATABASE_URL", 'https://totalcollectr-829d3-default-rtdb.firebaseio.com/');
 define("FIREBASE_JSON", 'totalcollectr-829d3-firebase-adminsdk-i66nf-15aa15ccdf.json');
 define("CHAT_SEVER", 'https://chat2.totalaichat.com/');
